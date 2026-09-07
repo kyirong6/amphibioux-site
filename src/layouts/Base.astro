@@ -1,6 +1,5 @@
 ---
 import { site } from "../site";
-import band from "../images/amphibioux.jpeg";
 import "../styles/global.css";
 
 interface Props {
@@ -11,6 +10,9 @@ interface Props {
 const { title, description = site.description } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : site.name;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+// public/og.jpg — 1200x630, the size link previews expect. Served verbatim, so the
+// URL stays stable across builds (Astro fingerprints anything under src/images).
+const share = new URL("/og.jpg", Astro.site ?? site.url).href;
 ---
 
 <html lang="en">
@@ -25,8 +27,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(band.src, Astro.site ?? site.url).href} />
+    <meta property="og:image" content={share} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — band photo`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={share} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 

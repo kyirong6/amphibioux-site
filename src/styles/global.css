@@ -1,0 +1,81 @@
+/* AMPHIBIOUX — pale sage paper, dark green ink, one column, nothing else.
+   To go dark instead, swap these four values:
+   --paper: #10160f;  --ink: #ece7db;  --muted: #8d9a8f;  --rule: #26302a; */
+
+:root {
+  --paper: #e7eae0;
+  --ink: #1b2620;
+  --muted: #55625a;
+  --rule: #d2d7c9;
+  --green: #3a6b4d;
+
+  --font: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --column: 40rem;
+  --gutter: clamp(1.5rem, 6vw, 3rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+::selection { background: var(--ink); color: var(--paper); }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.page {
+  width: 100%;
+  max-width: var(--column);
+  margin-inline: auto;
+  padding: clamp(3rem, 12vw, 7rem) var(--gutter) clamp(3rem, 10vw, 6rem);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+p { margin: 0; }
+
+/* Quiet text links: underline sits away from the baseline, thickens on hover. */
+.link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  /* --rule is nearly invisible on the sage ground, so links get their own weight. */
+  text-decoration-color: color-mix(in srgb, var(--ink) 38%, var(--paper));
+  transition: text-decoration-color 0.2s ease;
+}
+.link:hover { text-decoration-color: currentColor; }
+
+.muted { color: var(--muted); }
+
+/* The band name, wherever it appears. */
+.wordmark {
+  font-style: italic;
+  color: var(--green);
+}
+
+.small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}

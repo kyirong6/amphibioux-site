@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import { site } from "../site";
+import band from "../images/amphibioux.jpeg";
+---
+
+<Base>
+  <h1 class="wordmark">{site.name}</h1>
+
+  <Image
+    class="photo"
+    src={band}
+    alt="The four members of Amphibioux, photographed outdoors in black and white"
+    loading="eager"
+  />
+
+  <p class="about">{site.about}</p>
+
+  <ul class="lineup small">
+    {
+      site.lineup.map((player) => (
+        <li>
+          {player.name} <span class="muted">{player.instrument}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="links small">
+    {
+      site.links.map((link) => (
+        <a
+          class="link"
+          href={link.href}
+          {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </p>
+</Base>
+
+<style>
+  .photo { margin-top: clamp(1.75rem, 5vw, 2.5rem); }
+
+  .about {
+    margin-top: clamp(1.75rem, 5vw, 2.5rem);
+    text-wrap: pretty;
+  }
+
+  .lineup {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+</style>

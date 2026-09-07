@@ -41,10 +41,18 @@ build time, so drop in the full-size original — the 2MB files in there are ser
 `src/pages/videos.astro` is empty on purpose. There's a commented-out `<iframe>` in it
 showing the shape — paste in the YouTube id and delete the `Soon.` line.
 
-### Before going live
+### The domain
 
-- Set `site.url` in `src/site.ts` and `site` in `astro.config.mjs` to the real domain.
-- There's no contact address on the site; Instagram is the only way to reach the band.
+The site is served by GitHub Pages at `amphibioux.com`, deployed by
+`.github/workflows/deploy.yml` on every push to `main`.
+
+`public/CNAME` holds the custom domain. GitHub reads it from the published build, so it
+is the record of the domain rather than the setting in Settings → Pages — if you ever
+change domains, change it here. DNS lives at Squarespace: four A records on `@` pointing
+at GitHub's Pages IPs, and a `www` CNAME to `kyirong6.github.io`.
+
+`site.url` in `src/site.ts` and `site` in `astro.config.mjs` must match the domain; both
+are already set. There's no contact address on the site — Instagram is the way in.
 
 ### Deploying
 

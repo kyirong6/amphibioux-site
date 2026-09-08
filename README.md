@@ -36,6 +36,13 @@ add a line to the `photos` array with its alt text. Astro resizes and converts i
 build time, so drop in the full-size original — the 2MB files in there are served as
 ~90KB WebP. Don't put photos in `public/`; files there are served untouched.
 
+The gallery is a CSS-columns masonry: every photo keeps its own aspect ratio and the
+columns flow around it, so portrait and landscape can sit side by side without cropping.
+Clicking one opens it fullscreen; click anywhere or press Escape to close.
+
+If a photo shows up sideways, it has a rotation flag that the browser ignores. Bake it
+into the pixels with `ffmpeg -i photo.jpg -q:v 2 fixed.jpg`.
+
 ### Adding a video
 
 Add an entry to the `videos` list at the top of `src/pages/videos.astro` with the

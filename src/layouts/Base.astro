@@ -5,9 +5,11 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  /** Photo and video pages use the full width; everything else stays in one column. */
+  wide?: boolean;
 }
 
-const { title, description = site.description } = Astro.props;
+const { title, description = site.description, wide = false } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : site.name;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 // public/og.jpg — 1200x630, the size link previews expect. Served verbatim, so the
@@ -43,7 +45,7 @@ const share = new URL("/og.jpg", Astro.site ?? site.url).href;
   </head>
 
   <body>
-    <div class="page">
+    <div class={wide ? "page page--wide" : "page"}>
       <slot />
     </div>
   </body>

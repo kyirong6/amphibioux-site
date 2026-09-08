@@ -11,7 +11,7 @@ const videos = [
 ];
 ---
 
-<Base title="Videos">
+<Base title="Videos" wide>
   <p class="small"><a class="link" href="/">← <span class="wordmark">{site.name}</span></a></p>
 
   <h1>Videos</h1>
@@ -41,8 +41,14 @@ const videos = [
 
   .clips {
     display: grid;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
+    gap: clamp(1.5rem, 3vw, 2.25rem);
     margin-top: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  @media (min-width: 52rem) {
+    .clips { grid-template-columns: repeat(2, 1fr); }
+    /* the full performance takes the full width; the clips pair up beneath it */
+    .clips figure:first-child { grid-column: 1 / -1; }
   }
 
   figure { margin: 0; }

@@ -22,6 +22,6 @@ export const site = {
     { label: "Videos", href: "/videos" },
     { label: "Instagram", href: "https://www.instagram.com/amphibioux/" },
     { label: "YouTube", href: "https://www.youtube.com/@amphibioux" },
-    { label: "SoundCloud", href: "https://soundcloud.com/amphibioux" },
+    { label: "SoundCloud", href: "https://soundcloud.com/amphibiouxx" },
   ],
 } as const;

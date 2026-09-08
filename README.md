@@ -38,8 +38,9 @@ build time, so drop in the full-size original — the 2MB files in there are ser
 
 ### Adding a video
 
-`src/pages/videos.astro` is empty on purpose. There's a commented-out `<iframe>` in it
-showing the shape — paste in the YouTube id and delete the `Soon.` line.
+Add an entry to the `videos` list at the top of `src/pages/videos.astro` with the
+YouTube id (the part after `?v=`), a title, and a line of context. They embed through
+youtube-nocookie, so nothing loads from Google until someone presses play.
 
 ### The domain
 
